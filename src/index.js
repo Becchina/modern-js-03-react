@@ -1,21 +1,44 @@
 'use strict';
 
-// Import libraries ( ES6 import )
 import React from 'react';
 import { render } from 'react-dom';
 
-// Javascript class
 class Hello extends React.Component {
-  // Functions inside classes are called "methods"
+  // "constructor" method is called automatically at class initialization
+  constructor(){
+    // overriding default constructor
+    super();
+    // "global" properties inside class must have context
+    this.state = {
+      text: 'React'
+    }
+  }
+
+  typing(evt){
+    // All references inside this project
+    console.log(this.refs);
+    const input = this.refs.userInput.value;
+    // Update the state object
+    this.setState({
+      text: input
+    })
+  }
+
   render(){
-    // JSX: HTML inside Javascript
+    // There must always be a top level wrapper element (no adjacents)
     return (
-      <div className="alert alert-info">
-        Hello <strong>React</strong>
-      </div>
+      <section>
+        <input className="form-control"
+          placeholder="type here..."
+          value={this.state.text}
+          ref="userInput"
+          onChange={ (e) => this.typing(e) } />
+        <div className="alert alert-info">
+          Hello <strong>{this.state.text}</strong>
+        </div>
+      </section>
     )
   }
 }
 
-// Render the application inside a DOM node
 render(<Hello />, document.getElementById('app'));
