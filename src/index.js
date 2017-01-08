@@ -3,6 +3,6 @@
 import React from 'react';
 import { render } from 'react-dom';
 // Importing component from differnt file/module
-import Hello from './hello';
+import App from './app';
 
-render(<Hello />, document.getElementById('app'));
+render(<App />, document.getElementById('app'));
