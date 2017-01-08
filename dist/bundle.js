@@ -59,7 +59,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	(0, _reactDom.render)(_react2.default.createElement(_app2.default, null), document.getElementById('app'));
-	// Importing component from differnt file/module
 
 /***/ },
 /* 1 */
@@ -21550,6 +21549,10 @@
 
 	var _hello2 = _interopRequireDefault(_hello);
 
+	var _conditional = __webpack_require__(180);
+
+	var _conditional2 = _interopRequireDefault(_conditional);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21557,8 +21560,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	// Importing component from differnt file/module
-
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -21575,7 +21576,8 @@
 	      return _react2.default.createElement(
 	        'section',
 	        null,
-	        _react2.default.createElement(_hello2.default, null)
+	        _react2.default.createElement(_hello2.default, null),
+	        _react2.default.createElement(_conditional2.default, { accepted: 'false' })
 	      );
 	    }
 	  }]);
@@ -21664,6 +21666,104 @@
 	}(_react2.default.Component);
 
 	exports.default = Hello;
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Conditional = function (_React$Component) {
+	  _inherits(Conditional, _React$Component);
+
+	  // Passing props from parent, props are READ ONLY
+	  function Conditional(props) {
+	    _classCallCheck(this, Conditional);
+
+	    // Init state with props
+	    var _this = _possibleConstructorReturn(this, (Conditional.__proto__ || Object.getPrototypeOf(Conditional)).call(this, props));
+
+	    _this.state = {
+	      accepted: _this.props.accepted === 'true'
+	    };
+	    console.log(_this.state, _this.props);
+	    return _this;
+	  }
+
+	  _createClass(Conditional, [{
+	    key: 'select',
+	    value: function select(evt) {
+	      var input = this.refs.userInput.checked;
+	      this.setState({
+	        accepted: input
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      // Template with simple condition
+	      return _react2.default.createElement(
+	        'section',
+	        null,
+	        _react2.default.createElement('hr', null),
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          'Do you accept our policy?'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'form-check' },
+	          _react2.default.createElement(
+	            'label',
+	            { className: 'form-check-label' },
+	            _react2.default.createElement('input', { type: 'checkbox',
+	              className: 'form-check-input',
+	              ref: 'userInput',
+	              checked: this.state.accepted,
+	              onChange: function onChange(e) {
+	                return _this2.select(e);
+	              } }),
+	            _react2.default.createElement(
+	              'span',
+	              null,
+	              'Accept'
+	            )
+	          )
+	        ),
+	        this.state.accepted ? _react2.default.createElement(
+	          'a',
+	          { href: '#' },
+	          'Go ahead!'
+	        ) : null
+	      );
+	    }
+	  }]);
+
+	  return Conditional;
+	}(_react2.default.Component);
+
+	exports.default = Conditional;
 
 /***/ }
 /******/ ]);

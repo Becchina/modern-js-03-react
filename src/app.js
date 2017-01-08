@@ -1,14 +1,15 @@
 'use strict';
 
 import React from 'react';
-// Importing component from differnt file/module
 import Hello from './hello';
+import Conditional from './conditional';
 
 export default class App extends React.Component {
   render(){
     return (
       <section>
         <Hello />
+        <Conditional accepted="false" />
       </section>
     )
   }
